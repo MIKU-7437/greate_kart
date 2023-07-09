@@ -5,7 +5,7 @@
     <script src="https://use.fontawesome.com/da4fe223d1.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://fontawesome.com/images/favicon/icon.svg">
-
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
     <style>
         .rate > input {
             display: none;
@@ -34,14 +34,29 @@
             padding-right: 0;
         }
         input:checked ~ label, label:hover ~ label{
-            color: #ffb503
+            color: #ffb503; !important;
         }
         input:checked + label:hover, input:checked ~ label:hover, input:checked ~ label:hover ~ label,
         label:hover ~ input:checked ~ label{
-            color: #cc9000;
+            color: #cc9000; !important;
         }
         .rating-star{
             color: #ffb503;
+        }
+        {#Product gallery#}
+        ul.thumb{
+            margin: 0 auto;
+            padding: 0;
+            float: left;
+        }
+        ul.thumb li{
+            list-style: none;
+            margin: 10px:
+        }
+        ul.thumb li img{
+            width: 80px;
+            height: 80px;
+            border:1px solid grey;
         }
     </style>
 <meta charset="utf-8">
@@ -66,7 +81,7 @@
 <!-- custom style -->
 <link href="{% static 'css/ui.css' %}" rel="stylesheet" type="text/css"/>
 <link href="{% static 'css/responsive.css' %}" rel="stylesheet" media="only screen and (max-width: 1200px)" />
-
+<script src="https://ajax.googleapis.com/ajax/libs/cesiumjs/1.78/Build/Cesium/Cesium.js"></script>
 <!-- custom javascript -->
 <script src="{% static 'js/script.js' %}" type="text/javascript"></script>
 <!-- PayPal -->

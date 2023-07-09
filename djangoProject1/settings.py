@@ -11,22 +11,21 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qh+u#zhi1qqmnnr7bbnaefds42813+-r55=-u=@p-+$x3v)e4_'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -37,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-   #'paypal.standard.ipn',
+    'admin_thumbnails',
     'category',
     'accounts',
     'store',
@@ -79,7 +78,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'djangoProject1.wsgi.application'
 AUTH_USER_MODEL = 'accounts.Account'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -89,7 +87,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -109,7 +106,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -121,24 +117,22 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR/'static'
-STATICFILES_DIRS=[
+STATIC_ROOT = BASE_DIR / 'static'
+STATICFILES_DIRS = [
     'djangoProject1/static'
 ]
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR/'media'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 from django.contrib.messages import constants as messages
 
@@ -146,15 +140,11 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
+# SMTP configuration
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_HOST_USER = ('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
 
-#SMTP configuration
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'nurshanov.dias@gmail.com'
-EMAIL_HOST_PASSWORD = 'hyis'
-EMAIL_USE_TLS = True
 
-PAYPAL_RECEIVER_EMAIL = 'GreatKartBusines@gmail.com'
-PAYPAL_CLIENT_ID = 'AUBDue4CzCV2gJaHAgaTh5tK8_jFU8yV7UhzwkCi_oFh7BEvS3_HmgNhlnCxP7ihe2ew6qiDiUdmoNNV'
-PAYPAL_SECRET_KEY = 'ELM8p16DeC7bC35Q8jof5bMaEoLqcB9PXfBaT7VaA2kWCwLJmHkUpPU0Oc5EEyGvXdC8TBnbGFWyp8MK'
-PAYPAL_TEST = True
