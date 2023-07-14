@@ -10,7 +10,6 @@ import json
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 
-from paypal.standard.forms import PayPalPaymentsForm
 
 def place_order(request, total=0, quantity=0):
     current_user = request.user
